@@ -1,0 +1,18 @@
+.App {
+  /* text-align: center; */
+  padding-top: 4rem;
+  min-height: 100vh;
+}
+body {
+  background-color: #f0f0f0 !important;
+  /* overflow-x: hidden; */
+}
+#root {
+  background-color: #f0f0f0 !important;
+  width: 100vw;
+  height: 100vh;
+}
+
+.navbar {
+  background-color: #ef5350 !important;
+}
