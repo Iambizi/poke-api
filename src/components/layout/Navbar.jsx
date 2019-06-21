@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import logo from "../pokemon/logo.png";
 
 const Navbar = () => {
   return (
@@ -9,7 +9,8 @@ const Navbar = () => {
           className="navbar-brand col-sm-3 col-md-2 mr-0 align-items-center"
           href="#/"
         >
-          Pokedex
+          <img src={logo} style={{ width: "40%" }} alt="" />
+          &nbsp; The OG 150
         </a>
       </nav>
     </React.Fragment>

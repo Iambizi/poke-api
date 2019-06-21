@@ -26,7 +26,7 @@ class PokemonList extends Component {
             ))}
           </div>
         ) : (
-          <h1>Loading Pokemon</h1>
+          <h1 style={{ color: "white" }}>Loading Pokemons</h1>
         )}
       </React.Fragment>
     );
