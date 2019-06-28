@@ -84,11 +84,11 @@ class Pokemon extends Component {
     });
     //covert decimeters to Feet... The + 0.001 *100 / 100 is for rounding to 2 decimal places
     const height =
-      Math.round(pokemonRes.data.height * 0.328084 * 0.0001 * 100) / 100;
+      Math.round((pokemonRes.data.height * 0.328084 * 0.00001) * 100) / 100;
 
     //Converts to lbs
     const weight =
-      Math.round(pokemonRes.data.weight * 0.220462 * 0.0001 * 100) / 100;
+      Math.round((pokemonRes.data.weight * 0.220462 * 0.00001) * 100) / 100;
 
     const types = pokemonRes.data.types.map(type => type.type.name);
 
@@ -155,7 +155,7 @@ class Pokemon extends Component {
       pokemonIndex,
       name,
       types,
-      state: {
+      stats: {
         hp,
         attack,
         defense,
@@ -241,29 +241,29 @@ class Pokemon extends Component {
                           <div
                             className="progress-bar"
                             role="progressbar"
-                            style={{ width: `${this.state.stats.Attack}%` }}
+                            style={{ width: `${this.state.stats.attack}%` }}
                             aria-valuenow="25"
                             aria-valuemin="0"
                             aria-valuemax="100"
                           >
-                            <small>{this.state.stats.Attack}</small>
+                            <small>{this.state.stats.attack}</small>
                           </div>
                         </div>
                       </div>
                     </div>
                     <div className="row align-items-center">
-                      <div className="col-12-md-3">Defence</div>
+                      <div className="col-12-md-3">Defense</div>
                       <div className="col-12 col-md-9">
                         <div className="progress">
                           <div
                             className="progress-bar"
                             role="progressbar"
-                            style={{ width: `${this.state.stats.defence}%` }}
+                            style={{ width: `${this.state.stats.defense}%` }}
                             aria-valuenow="25"
                             aria-valuemin="0"
                             aria-valuemax="100"
                           >
-                            <small>{this.state.stats.defence}</small>
+                            <small>{this.state.stats.defense}</small>
                           </div>
                         </div>
                       </div>
@@ -305,12 +305,12 @@ class Pokemon extends Component {
                       </div>
                     </div>
                     <div className="row align-items-center">
-                      <div className="col-12-md-3">Special-defence</div>
+                      <div className="col-12-md-3">Special-defense</div>
                       <div className="col-12 col-md-9">
                         <div className="progress">
                           <div
                             className="progress-bar"
-                            role="progressBar"
+                            role="progressbar"
                             style={{
                               width: `${this.state.stats.specialDefense}%`
                             }}
@@ -319,6 +319,118 @@ class Pokemon extends Component {
                             aria-valuemax="100"
                           >
                             <small>{this.state.stats.specialDefense}</small>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="row mt-1">
+                      <div className="col">
+                        <p className="p-2">{this.state.description}</p>
+                      </div>
+                    </div>
+                  </div>
+                  <hr />
+                  <div className="card-body">
+                    <h5 className="card-title text-center">Profile</h5>
+                    <div className="row">
+                      <div className="col-md-6">
+                        <div className="row">
+                          <div className="col-md-6">
+                            <h6 className="float-right">Height:</h6>
+                          </div>
+                          <div className="col-md-6">
+                            <h6 className="float-left">
+                              {this.state.height}ft.
+                            </h6>
+                          </div>
+                          <div className="col-md-6">
+                            <h6 className="float-right">Weight:</h6>
+                          </div>
+                          <div className="col-md-6">
+                            <h6 className="float-left">
+                              {this.state.weight}ft.
+                            </h6>
+                          </div>
+                          <div className="col-md-6">
+                            <h6 className="float-right">Catch Rate:</h6>
+                          </div>
+                          <div className="col-md-6">
+                            <h6 className="float-left">
+                              {this.state.catchRate}%
+                            </h6>
+                          </div>
+                          <div className="col-6">
+                            <h6 className="float-right">Gender Ratio:</h6>
+                          </div>
+                          <div className="col-6">
+                            <div class="progress">
+                              <div
+                                class="progress-bar"
+                                role="progressbar"
+                                style={{
+                                  width: `${this.state.genderRatioFemale}%`,
+                                  backgroundColor: "#c2185b"
+                                }}
+                                aria-valuenow="15"
+                                aria-valuemin="0"
+                                aria-valuemax="100"
+                              >
+                                <small>{this.state.genderRatioFemale}</small>
+                              </div>
+                              <div
+                                class="progress-bar"
+                                role="progressbar"
+                                style={{
+                                  width: `${this.state.genderRatioMale}%`,
+                                  backgroundColor: "#1976d2"
+                                }}
+                                aria-valuenow="30"
+                                aria-valuemin="0"
+                                aria-valuemax="100"
+                              >
+                                <small>{this.state.genderRatioMale}</small>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="col-md-6">
+                        <div className="row">
+                          <div className="col-md-6">
+                            <h6 className="float-right">Egg Groups:</h6>
+                          </div>
+                          <div className="col-md-6">
+                            <h6 className="float-left">
+                              {this.state.eggGroups}
+                            </h6>
+                          </div>
+                        </div>
+                        <div className="row">
+                          <div className="col-md-6">
+                            <h6 className="float-right">Hatch Steps:</h6>
+                          </div>
+                          <div className="col-md-6">
+                            <h6 className="float-left">
+                              {this.state.hatchSteps}
+                            </h6>
+                          </div>
+                        </div>
+                        <div className="row">
+                          <div className="col-md-6">
+                            <h6 className="float-right">Abilities:</h6>
+                          </div>
+                          <div className="col-md-6">
+                            <h6 className="float-left">
+                              {this.state.abilities}
+                            </h6>
+                          </div>
+                        </div>
+                        <div className="row">
+                          <div className="col-md-6">
+                            <h6 className="float-right">EVs:</h6>
+                          </div>
+                          <div className="col-md-6">
+                            <h6 className="float-left">{this.state.evs}</h6>
                           </div>
                         </div>
                       </div>
