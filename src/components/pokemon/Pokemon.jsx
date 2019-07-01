@@ -48,11 +48,14 @@ class Pokemon extends Component {
     const { pokemonIndex } = this.props.match.params;
 
     //urls for pokemon information
-    const pokemonUrl = `https:pokeapi.co/api/v2/pokemon/${pokemonIndex}/`;
-    const pokemonSpeciesUrl = `https:pokeapi.co/api/v2/pokemon-species/${pokemonIndex}/`;
+    const pokemonUrl = `https://pokeapi.co/api/v2/pokemon/${pokemonIndex}/`;
+    const pokemonSpeciesUrl = `https://pokeapi.co/api/v2/pokemon-species/${pokemonIndex}/`;
 
     //get Pokemon Information
-    const pokemonRes = await axios.get(pokemonUrl);
+    const pokemonRes = await axios.get(
+      `https://cors-anywhere.herokuapp.com/${pokemonUrl}`
+    );
+    // const pokemonRes = await axios.get(pokemonUrl);
     const name = pokemonRes.data.name;
     const imageUrl = pokemonRes.data.sprites.front_default;
 
@@ -84,11 +87,11 @@ class Pokemon extends Component {
     });
     //covert decimeters to Feet... The + 0.001 *100 / 100 is for rounding to 2 decimal places
     const height =
-      Math.round((pokemonRes.data.height * 0.328084 * 0.00001) * 100) / 100;
+      Math.round((pokemonRes.data.height * 0.328084 + 0.001) * 100) / 100;
 
     //Converts to lbs
     const weight =
-      Math.round((pokemonRes.data.weight * 0.220462 * 0.00001) * 100) / 100;
+      Math.round((pokemonRes.data.weight * 0.220462 + 0.001) * 100) / 100;
 
     const types = pokemonRes.data.types.map(type => type.type.name);
 
@@ -348,7 +351,7 @@ class Pokemon extends Component {
                           </div>
                           <div className="col-md-6">
                             <h6 className="float-left">
-                              {this.state.weight}ft.
+                              {this.state.weight} lbs
                             </h6>
                           </div>
                           <div className="col-md-6">
@@ -363,9 +366,9 @@ class Pokemon extends Component {
                             <h6 className="float-right">Gender Ratio:</h6>
                           </div>
                           <div className="col-6">
-                            <div class="progress">
+                            <div className="progress">
                               <div
-                                class="progress-bar"
+                                className="progress-bar"
                                 role="progressbar"
                                 style={{
                                   width: `${this.state.genderRatioFemale}%`,
@@ -378,7 +381,7 @@ class Pokemon extends Component {
                                 <small>{this.state.genderRatioFemale}</small>
                               </div>
                               <div
-                                class="progress-bar"
+                                className="progress-bar"
                                 role="progressbar"
                                 style={{
                                   width: `${this.state.genderRatioMale}%`,
