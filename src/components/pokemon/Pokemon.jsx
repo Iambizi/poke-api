@@ -48,14 +48,17 @@ class Pokemon extends Component {
     const { pokemonIndex } = this.props.match.params;
 
     //urls for pokemon information
+
+    //This one makes us of URl Parameters to leverage
     const pokemonUrl = `https://pokeapi.co/api/v2/pokemon/${pokemonIndex}/`;
     const pokemonSpeciesUrl = `https://pokeapi.co/api/v2/pokemon-species/${pokemonIndex}/`;
 
     //get Pokemon Information
-    const pokemonRes = await axios.get(
-      `https://cors-anywhere.herokuapp.com/${pokemonUrl}`
-    );
-    // const pokemonRes = await axios.get(pokemonUrl);
+    // const pokemonRes = await axios.get(
+    //   `https://cors-anywhere.herokuapp.com/${pokemonUrl}`
+    // );
+    //Gets the Pokemon's stats, height, weight, types, abilities, and EVs
+    const pokemonRes = await axios.get(pokemonUrl);
     const name = pokemonRes.data.name;
     const imageUrl = pokemonRes.data.sprites.front_default;
 
@@ -100,7 +103,7 @@ class Pokemon extends Component {
         .toLowerCase()
         .split("_")
         .map(s => s.charAt(0).toUpperCase() + s.substring(1))
-        .join("");
+        .join(" ");
     });
 
     const evs = pokemonRes.data.stats
@@ -115,11 +118,11 @@ class Pokemon extends Component {
           .toLowerCase()
           .split("_")
           .map(s => s.charAt(0).toUpperCase() + s.substring(1))
-          .join("");
+          .join(" ");
       })
-      .join(",");
+      .join(", ");
 
-    //Get Pokemon Description, Catch rate, EggGroups, Gender Ratios, Hatch Steps
+    //Get Pokemon Description, Catch rate, Gender Ratios, EggGroups, Hatch Steps
     await axios.get(pokemonSpeciesUrl).then(res => {
       let description = "";
       res.data.flavor_text_entries.some(flavor => {
